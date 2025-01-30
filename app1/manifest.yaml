@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: nginx
+        image: vasavi99/app1:v1
 ---
 apiVersion: v1
 kind: Service
@@ -49,16 +49,17 @@ metadata:
         alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:278768175210:certificate/a3624543-a44c-4bdf-a2e4-cc5c13ed1a1a
         alb.ingress.kubernetes.io/listen-ports: [{"HTTPS": 443}]
         alb.ingress.kubernetes.io/tags: Environment=dev,Team=test
-        alb.ingress.kubernetes.io/node.group: expense
+        alb.ingress.kubernetes.io/group.name: expense
 spec:
     ingressClassName: alb
     rules:
     - hosts: "app1.vasavi.online"
       http:
-        paths:
+        paths: 
         - pathType: Prefix
-        backend:
-          service:
-            name: app1
-            port:
-              number: 80
+          path: "/"
+          backend:
+           service:
+             name: app1
+             port:
+               number: 80
