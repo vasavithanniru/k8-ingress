@@ -53,7 +53,7 @@ metadata:
 spec:
     ingressClassName: alb
     rules:
-    - hosts: "app1.vasavi.online"
+    - host: "app1.vasavi.online"
       http:
         paths: 
         - pathType: Prefix
